@@ -1,14 +1,11 @@
 const mongoose = require("mongoose");
 
-const PdfDetailsSchema = new mongoose.Schema(
-  {
-    pdf: String,
-    title: String,
-    authors: String,
-    dateUploaded: String,
-    datePublished: String,
-  },
-  { collection: "PdfDetails" }
-);
+const AdvisorSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  specializations: [String], // Array of specializations for the advisor
+  panelistRole: { type: String, required: true } // Role of the panelist (e.g., Subject Expert, Statistician, Technical Expert)
+});
 
-mongoose.model("PdfDetails", PdfDetailsSchema);
+const Advisor = mongoose.model("Advisor", AdvisorSchema);
+
+module.exports = Advisor;
